@@ -160,19 +160,26 @@
             var item = document.getElementById("item").value;
             var venda = parseFloat(document.getElementById("num1").value); 
 
+            if (isNaN(venda) || venda <= 0) {
+                alert("Por favor, insira um valor válido para a venda.");
+                return;  
+            }
+
             var total = 0; 
 
-            for (var i = 2; i <= 6; i++) {
-                var valor = parseFloat(document.getElementById('num' + i).value);
-                if (valor < 0 || valor > 100) {
-                    alert("O valor do imposto deve estar entre 0 e 100.");
-                    return; 
-                }
-                if (valor) {
-                    numeros.push(valor);
-                    total += venda * (valor / 100); 
-                }
+        for (var i = 2; i <= 6; i++) {  
+            var valor = document.getElementById('num' + i).value.trim();  
+            if (valor !== "" && !isNaN(valor) && valor >= 0) {
+                var percentual = parseFloat(valor); 
+                total += venda * (percentual / 100);  
+                numeros.push(valor);  
+            } else if (valor === "") {
+                var percentual = 0;  
+                total += venda * (percentual / 100);  
+                numeros.push("0");       
             }
+    }
+
 
             var resultado = "Item vendido: " + item + "<br>";
             resultado += "Valor da venda: R$ " + venda.toFixed(2) + "<br><br>";
