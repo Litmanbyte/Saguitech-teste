@@ -10,7 +10,7 @@ Este é um projeto simples de uma página HTML que simula a emissão de uma Nota
 
 ## Como Usar
 
-1. Abra o arquivo `index.html` em seu navegador.
+1. Acesse `https://litmanbyte.github.io/Saguitech-teste/` em seu navegador.
 2. Preencha os campos de entrada com os dados necessários:
    - **Item vendido**: Nome ou descrição do item.
    - **Valor da venda**: Valor monetário da venda.
