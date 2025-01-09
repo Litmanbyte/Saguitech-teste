@@ -1,4 +1,4 @@
-# Emissão de NFS-e - Página de Cálculo de Impostos
+# Emissão de NFS-e  Página de Cálculo de Impostos
 
 Este é um projeto simples de uma página HTML que simula a emissão de uma Nota Fiscal Eletrônica de Serviço (NFS-e) com o cálculo de impostos. A página permite que o usuário insira informações sobre a venda e calcule impostos como IRPF, PIS, COFINS, INSS e ISSQN, e então exiba os resultados em um alerta.
 
