@@ -65,7 +65,6 @@
             width: 100%;
         }
 
-        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -74,7 +73,7 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.5); /* Fundo semitransparente */
+            background-color: rgba(0,0,0,0.5); 
             justify-content: center;
             align-items: center;
         }
@@ -143,7 +142,6 @@
         </form>
     </div>
 
-    <!-- Modal -->
     <div class="modal" id="myModal">
         <div class="modal-content">
             <h2>Resultado da Nota</h2>
@@ -157,38 +155,39 @@
     </footer>
 
     <script>
-        // Função para mostrar o modal com os resultados
         function impostos() {
             var numeros = [];
             var item = document.getElementById("item").value;
-            var venda = document.getElementById("num1").value;
+            var venda = parseFloat(document.getElementById("num1").value); 
 
-            // Coletando os valores dos impostos
+            var total = 0; 
+
             for (var i = 2; i <= 6; i++) {
-                var valor = document.getElementById('num' + i).value;
+                var valor = parseFloat(document.getElementById('num' + i).value);
+                if (valor < 0 || valor > 100) {
+                    alert("O valor do imposto deve estar entre 0 e 100.");
+                    return; 
+                }
                 if (valor) {
                     numeros.push(valor);
+                    total += venda * (valor / 100); 
                 }
             }
 
-            // Criando uma mensagem com os resultados
             var resultado = "Item vendido: " + item + "<br>";
-            resultado += "Valor da venda: R$ " + venda + "<br><br>";
+            resultado += "Valor da venda: R$ " + venda.toFixed(2) + "<br><br>";
             resultado += "Impostos:<br>";
             resultado += "IRPF: " + numeros[0] + "%<br>";
             resultado += "PIS: " + numeros[1] + "%<br>";
             resultado += "COFINS: " + numeros[2] + "%<br>";
             resultado += "INSS: " + numeros[3] + "%<br>";
             resultado += "ISSQN: " + numeros[4] + "%<br>";
+            resultado += "<br><strong>Total de impostos: R$ " + total.toFixed(2) + "</strong>";
 
-            // Exibindo a mensagem no modal
             document.getElementById("notaResultado").innerHTML = resultado;
 
-            // Abrindo o modal
             document.getElementById("myModal").style.display = "flex";
         }
-
-        // Função para fechar o modal
         function closeModal() {
             document.getElementById("myModal").style.display = "none";
         }
