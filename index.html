@@ -179,21 +179,20 @@
                 numeros.push("0");       
             }
     }
+    var final = venda + total;
+        var resultado = "Item vendido: " + item + "<br>";
+        resultado += "Valor da venda: R$ " + venda.toFixed(2) + "<br><br>";
+        resultado += "Impostos:<br>";
+        resultado += "IRPF: " + numeros[0] + "%<br>";
+        resultado += "PIS: " + numeros[1] + "%<br>";
+        resultado += "COFINS: " + numeros[2] + "%<br>";
+        resultado += "INSS: " + numeros[3] + "%<br>";
+        resultado += "ISSQN: " + numeros[4] + "%<br>";
+        resultado += "<br><strong>Total de impostos: R$ " + total.toFixed(2) + "</strong>";
+        resultado += "<br><strong>Total : R$ " + final.toFixed(2) + "</strong>";
+        document.getElementById("notaResultado").innerHTML = resultado;
+        document.getElementById("myModal").style.display = "flex";
 
-
-            var resultado = "Item vendido: " + item + "<br>";
-            resultado += "Valor da venda: R$ " + venda.toFixed(2) + "<br><br>";
-            resultado += "Impostos:<br>";
-            resultado += "IRPF: " + numeros[0] + "%<br>";
-            resultado += "PIS: " + numeros[1] + "%<br>";
-            resultado += "COFINS: " + numeros[2] + "%<br>";
-            resultado += "INSS: " + numeros[3] + "%<br>";
-            resultado += "ISSQN: " + numeros[4] + "%<br>";
-            resultado += "<br><strong>Total de impostos: R$ " + total.toFixed(2) + "</strong>";
-
-            document.getElementById("notaResultado").innerHTML = resultado;
-
-            document.getElementById("myModal").style.display = "flex";
         }
         function closeModal() {
             document.getElementById("myModal").style.display = "none";
