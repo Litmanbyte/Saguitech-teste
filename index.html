@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emissão de NFS-e</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: orange;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .container {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .textbox-container {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-size: 18px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        input[type="number"], input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            width: 60px;
+        }
+
+        button {
+            background-color: orange;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            border-radius: 12px;
+        }
+
+        button:hover {
+            background-color: orange;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: orange;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5); /* Fundo semitransparente */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 40%;
+            max-width: 500px;
+        }
+
+        .close-btn {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .close-btn:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Exercício prático</h1>
+    </header>
+
+    <div class="container">
+        <form id="formulario">
+            <div class="textbox-container">
+                <label for="item">Item vendido:</label>
+                <input type="text" id="item" name="item" required>
+            </div>
+            <div class="textbox-container">
+                <label for="num1">Valor da venda:</label>
+                <input type="number" id="num1" name="num1" min="0" required>
+            </div>
+            <div class="textbox-container">
+                <label for="num2">IRPF:</label>
+                <input type="number" id="num2" name="num2" min="0" max="100" required>
+            </div>
+            <div class="textbox-container">
+                <label for="num3">PIS:</label>
+                <input type="number" id="num3" name="num3" min="0" max="100" required>
+            </div>
+            <div class="textbox-container">
+                <label for="num4">CONFINS:</label>
+                <input type="number" id="num4" name="num4" min="0" max="100" required>
+            </div>
+            <div class="textbox-container">
+                <label for="num5">INSS:</label>
+                <input type="number" id="num5" name="num5" min="0" max="100" required>
+            </div>
+            <div class="textbox-container">
+                <label for="num6">ISSQN:</label>
+                <input type="number" id="num6" name="num6" min="0" max="100" required>
+            </div>
+            <button type="button" onclick="impostos()">Enviar</button>
+        </form>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="myModal">
+        <div class="modal-content">
+            <h2>Resultado da Nota</h2>
+            <p id="notaResultado"></p>
+            <button class="close-btn" onclick="closeModal()">Fechar</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; Litman Braga</p>
+    </footer>
+
+    <script>
+        // Função para mostrar o modal com os resultados
+        function impostos() {
+            var numeros = [];
+            var item = document.getElementById("item").value;
+            var venda = document.getElementById("num1").value;
+
+            // Coletando os valores dos impostos
+            for (var i = 2; i <= 6; i++) {
+                var valor = document.getElementById('num' + i).value;
+                if (valor) {
+                    numeros.push(valor);
+                }
+            }
+
+            // Criando uma mensagem com os resultados
+            var resultado = "Item vendido: " + item + "<br>";
+            resultado += "Valor da venda: R$ " + venda + "<br><br>";
+            resultado += "Impostos:<br>";
+            resultado += "IRPF: " + numeros[0] + "%<br>";
+            resultado += "PIS: " + numeros[1] + "%<br>";
+            resultado += "COFINS: " + numeros[2] + "%<br>";
+            resultado += "INSS: " + numeros[3] + "%<br>";
+            resultado += "ISSQN: " + numeros[4] + "%<br>";
+
+            // Exibindo a mensagem no modal
+            document.getElementById("notaResultado").innerHTML = resultado;
+
+            // Abrindo o modal
+            document.getElementById("myModal").style.display = "flex";
+        }
+
+        // Função para fechar o modal
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+    </script>
+
+</body>
+</html>
